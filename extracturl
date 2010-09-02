@@ -1,0 +1,39 @@
+#!/usr/bin/perl -w
+# Copyright 2010 Kevin Spencer <kevin@kevinspencer.org>
+#
+# Permission to use, copy, modify, distribute, and sell this software and its
+# documentation for any purpose is hereby granted without fee, provided that
+# the above copyright notice appear in all copies and that both that
+# copyright notice and this permission notice appear in supporting
+# documentation. No representations are made about the suitability of this
+# software for any purpose. It is provided "as is" without express or
+# implied warranty.
+#
+################################################################################
+
+use File::Basename;
+use JSON::Any;
+use LWP::UserAgent;
+use strict;
+
+our $VERSION = '0.01';
+
+my $api_login = '';
+my $api_key   = '';
+
+my $shorturl = shift;
+
+my $ua = LWP::UserAgent->new();
+$ua->agent("extracturl/0.1");
+
+my $api_src = 'http://api.bit.ly/expand?version=2.0.1&shortUrl=' .
+    $shorturl . '&login=' . $api_login . '&apiKey=' . $api_key;
+
+my $response = $ua->get($api_src);
+if ($response->is_success()) {
+    my $bitly_key = basename($shorturl);
+    my $obj = JSON::Any->jsonToObj($response->decoded_content());
+    print $obj->{results}{$bitly_key}{longUrl}, "\n";
+} else {
+    print $response->errstr(), "\n";
+}

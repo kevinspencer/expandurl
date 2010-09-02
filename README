@@ -1,0 +1,22 @@
+extracturl - extract full URL from a bit.ly URL
+-----------------------------------------------
+
+extracturl is a Perl program that converts a bit.ly shortend URL to the full
+expanded URL.
+
+Installation
+------------
+
+Copy the extracturl program to a directory of your choice.
+
+You'll need the JSON::Any module installed, freely availible from the CPAN
+
+Usage
+-----
+
+./extracturl http://bit.ly/a7bxX5
+
+Configuration
+-------------
+
+You will need a bit.ly api_login and an api_key.
