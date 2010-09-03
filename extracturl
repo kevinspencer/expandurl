@@ -16,12 +16,20 @@ use JSON::Any;
 use LWP::UserAgent;
 use strict;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 my $api_login = '';
 my $api_key   = '';
 
 my $shorturl = shift;
+
+if (! ($api_login && $api_key)) {
+    die "Error: cannot continue without the api_login and api_key.\n";
+}
+
+if (! $shorturl) {
+    die "Error: cannot continue without a URL to expand.\n";
+}
 
 my $ua = LWP::UserAgent->new();
 $ua->agent("extracturl/0.1");
