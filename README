@@ -1,8 +1,7 @@
-expandurl - extract full URL from a bit.ly URL
------------------------------------------------
+expandurl - expand a shortened URL with longurl.org
+---------------------------------------------------
 
-expandurl is a Perl program that converts a bit.ly shortend URL to the full
-expanded URL.
+expandurl is a Perl program that expands a shortend URL to its original length.
 
 Installation
 ------------
@@ -16,7 +15,10 @@ Usage
 
 ./expandurl http://bit.ly/a7bxX5
 
-Configuration
--------------
+Supported Shortening Services
+-----------------------------
 
-You will need a bit.ly api_login and an api_key.
+expandurl expands URLs by utilizing the longurl.org API.  longurl.org
+supports the expansion of the following services:
+
+http://longurl.org/services
